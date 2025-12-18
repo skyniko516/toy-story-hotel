@@ -16,15 +16,18 @@
             --klook-orange: #FF5B00;
         }
 
+        * {
+            /* 強制所有文字使用圓體 */
+            font-family: 'Zen Maru Gothic', 'Fredoka', "PingFang TC", "Heiti TC", "Microsoft JhengHei", sans-serif !important;
+        }
+
         body {
-            /* 全面更換為圓體 */
-            font-family: 'Zen Maru Gothic', 'Fredoka', "Microsoft JhengHei", sans-serif;
             margin: 0; padding: 15px;
             background-color: var(--andy-blue);
             display: flex; justify-content: center;
         }
 
-        /* ☁️ 雲朵動畫保持不變 */
+        /* ☁️ 雲朵動畫 */
         .cloud-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
         .cloud { position: absolute; background: white; width: 80px; height: 30px; border-radius: 50px; opacity: 0.8; animation: moveClouds linear infinite; }
         .cloud::after, .cloud::before { content: ''; position: absolute; background: white; border-radius: 50%; }
@@ -41,96 +44,126 @@
         }
 
         .header { background: var(--andy-blue); padding: 25px 20px; text-align: center; color: white; border-bottom: 4px dashed #fff; }
-        .header h1 { 
-            margin: 0; 
-            font-size: 24px; 
-            font-weight: 900;
-            letter-spacing: 1px;
-            text-shadow: 2.5px 2.5px 0px var(--toy-red); 
-        }
+        .header h1 { margin: 0; font-size: 22px; font-weight: 900; text-shadow: 2.5px 2.5px 0px var(--toy-red); }
 
-        /* 按鈕字體加粗 */
-        .tab-btn { 
-            font-family: 'Zen Maru Gothic', sans-serif;
-            font-weight: 900;
-            font-size: 16px;
-            flex: 1; padding: 10px; border: none; border-radius: 15px; cursor: pointer; box-shadow: 0 4px 0 #ccc; transition: 0.1s; 
-        }
-        
+        .tab-menu { display: flex; padding: 15px 10px; gap: 8px; background: #fdfdfd; position: sticky; top: 0; z-index: 100; }
+        .tab-btn { flex: 1; padding: 10px; border: none; border-radius: 15px; font-weight: 900; cursor: pointer; box-shadow: 0 4px 0 #ccc; transition: 0.1s; font-size: 14px; }
         .tab-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 #ccc; }
         .btn-stay.active { background: var(--toy-yellow); color: #8B4513; box-shadow: 0 4px 0 #B8860B; }
         .btn-surprise.active { background: var(--toy-red); color: white; box-shadow: 0 4px 0 #8B0000; }
         .btn-park.active { background: var(--toy-green); color: white; box-shadow: 0 4px 0 #006400; }
 
-        /* 內容字體微調 */
-        .text-bold { font-weight: 900; font-size: 18px; color: #333; }
-        .text-desc { font-weight: 700; font-size: 14px; color: #777; }
-
-        /* 其他 CSS 保持跟上一版一樣... */
-        .tab-menu { display: flex; padding: 15px 10px; gap: 8px; background: #fdfdfd; position: sticky; top: 0; z-index: 100; }
-        .content-area { padding: 15px; background: #fff; }
+        .content-area { padding: 15px; background: #fff; min-height: 500px; }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
-        ul { list-style: none; padding: 0; }
-        .block-item { position: relative; background: #fff; margin-bottom: 18px; border-radius: 15px; border: 4px solid #eee; box-shadow: 0 6px 0px #eee; cursor: pointer; overflow: hidden; transition: 0.2s; }
+
+        ul { list-style: none; padding: 0; margin: 0; }
+        .block-item {
+            position: relative;
+            background: #fff;
+            margin-bottom: 18px;
+            border-radius: 18px;
+            border: 4px solid #eee;
+            box-shadow: 0 6px 0px #eee;
+            cursor: pointer;
+            overflow: hidden;
+            transition: 0.2s;
+        }
+        
+        /* 積木邊框顏色交替 */
         .block-item:nth-child(4n+1) { border-color: var(--toy-red); box-shadow: 0 6px 0px #b33000; }
         .block-item:nth-child(4n+2) { border-color: var(--toy-yellow); box-shadow: 0 6px 0px #ccaa00; }
         .block-item:nth-child(4n+3) { border-color: var(--toy-green); box-shadow: 0 6px 0px #259425; }
         .block-item:nth-child(4n+4) { border-color: var(--toy-purple); box-shadow: 0 6px 0px #7a58bf; }
-        .block-header { padding: 15px 15px 15px 40px; }
-        .block-header::before { content: ''; position: absolute; left: 15px; top: 20px; width: 12px; height: 12px; background: rgba(0,0,0,0.1); border-radius: 50%; box-shadow: 0 15px 0 rgba(0,0,0,0.1); }
-        .block-body { max-height: 0; padding: 0 20px; background: #fafafa; transition: all 0.3s ease-out; font-size: 15px; line-height: 1.6; color: #444; }
-        .block-item.open .block-body { max-height: 800px; padding: 15px 20px 20px 20px; border-top: 2px dashed #eee; }
+
+        .block-header { padding: 15px 15px 15px 40px; position: relative; }
+        .block-header::before {
+            content: ''; position: absolute; left: 15px; top: 18px;
+            width: 12px; height: 12px; background: rgba(0,0,0,0.08); border-radius: 50%;
+            box-shadow: 0 15px 0 rgba(0,0,0,0.08);
+        }
+
+        .text-bold { font-size: 17px; font-weight: 900; color: #333; display: block; }
+        .text-desc { font-size: 13px; color: #777; margin-top: 4px; display: block; font-weight: 700; }
+
+        .block-body {
+            max-height: 0; padding: 0 20px; background: #fafafa; transition: all 0.3s ease-out; font-size: 15px; line-height: 1.6; color: #444;
+        }
+        .block-item.open .block-body { max-height: 1000px; padding: 15px 20px 20px 20px; border-top: 2px dashed #eee; }
+
         .klook-link { display: flex; align-items: center; justify-content: center; background: var(--klook-orange); color: white !important; text-decoration: none; padding: 12px; border-radius: 12px; margin-top: 15px; font-weight: 900; box-shadow: 0 4px 0 #b33f00; }
         .footer { text-align: center; padding: 15px; font-size: 11px; color: #bbb; }
     </style>
 </head>
 <body>
-    <div class="cloud-container"><div class="cloud" style="top:10%; animation-duration:18s;"></div><div class="cloud" style="top:45%; animation-duration:25s;"></div></div>
-    <div class="app-container">
-        <div class="header"><h1>玩具總動員飯店懶人包</h1></div>
-        <div class="tab-menu">
-            <button class="tab-btn btn-stay active" onclick="showTab(event, 'stay')">⭐ 必看</button>
-            <button class="tab-btn btn-surprise" onclick="showTab(event, 'surprise')">🚀 驚喜</button>
-            <button class="tab-btn btn-park" onclick="showTab(event, 'park')">🏰 入園</button>
-        </div>
-        <div class="content-area">
-            <div id="stay" class="tab-content active">
-                <ul>
-                    <li class="block-item" onclick="toggleBlock(this)">
-                        <div class="block-header">
-                            <span class="text-bold">【房型怎麼選】</span>
-                            <span class="text-desc">房型差在哪一次看懂 ▾</span>
-                        </div>
-                        <div class="block-body">
-                            🏨 <b>房型景觀介紹：</b><br>
-                            • <b>廣場景觀：</b>面向門口彈簧狗公園，人氣第一！<br>
-                            • <b>海灣景觀：</b>面向大海，採光極佳。<br>
-                            • <b>一般景觀：</b>面向飯店外圍，CP值最高。<br><br>
-                            💡 所有房間內部裝潢都是<b>安迪的房間</b>，差別僅在窗外風景喔！<br><br>
-                            <a href="https://www.klook.com/zh-TW/hotels/detail/471026-tokyo-disney-resort-toy-story-hotel/" target="_blank" class="klook-link">
-                               🧡 前往 KLOOK 查看房價
-                            </a>
-                        </div>
-                    </li>
-                    <li class="block-item" onclick="toggleBlock(this)">
-                        <div class="block-header"><span class="text-bold">【迪士尼怎麼玩】</span><span class="text-desc">第一次來也不會走冤枉路的玩法順序 ▾</span></div>
-                        <div class="block-body">內容準備中...</div>
-                    </li>
-                </ul>
-            </div>
-            </div>
-        <div class="footer">Andy's Room Guest Guide</div>
+
+<div class="cloud-container"><div class="cloud" style="top:10%; animation-duration:18s;"></div><div class="cloud" style="top:45%; animation-duration:25s;"></div></div>
+
+<div class="app-container">
+    <div class="header"><h1>玩具總動員飯店懶人包</h1></div>
+    <div class="tab-menu">
+        <button class="tab-btn btn-stay active" onclick="showTab(event, 'stay')">⭐ 必看</button>
+        <button class="tab-btn btn-surprise" onclick="showTab(event, 'surprise')">🚀 驚喜</button>
+        <button class="tab-btn btn-park" onclick="showTab(event, 'park')">🏰 入園</button>
     </div>
 
-    <script>
-        function showTab(evt, tabId) {
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            evt.currentTarget.classList.add('active');
-        }
-        function toggleBlock(el) { el.classList.toggle('open'); }
-    </script>
+    <div class="content-area">
+        <div id="stay" class="tab-content active">
+            <ul>
+                <li class="block-item" onclick="toggleBlock(this)">
+                    <div class="block-header"><span class="text-bold">【房型怎麼選】</span><span class="text-desc">房型差在哪一次看懂 ▾</span></div>
+                    <div class="block-body">
+                        🏨 <b>景觀介紹：</b><br>
+                        • 廣場景觀：面向門口彈簧狗公園 (最推!)<br>
+                        • 海灣景觀：面向大海景。<br>
+                        • 一般景觀：面向建築外圍。<br><br>
+                        <a href="https://www.klook.com/zh-TW/hotels/detail/471026-tokyo-disney-resort-toy-story-hotel/" target="_blank" class="klook-link">🧡 前往 KLOOK 查看房價</a>
+                    </div>
+                </li>
+                <li class="block-item" onclick="toggleBlock(this)"><div class="block-header"><span class="text-bold">【迪士尼怎麼玩】</span><span class="text-desc">第一次來也不會走冤枉路的玩法順序 ▾</span></div><div class="block-body">內容準備中...</div></li>
+                <li class="block-item" onclick="toggleBlock(this)"><div class="block-header"><span class="text-bold">【親子設施與活動】</span><span class="text-desc">小朋友放電、大人也不無聊的玩法整理 ▾</span></div><div class="block-body">內容準備中...</div></li>
+                <li class="block-item" onclick="toggleBlock(this)"><div class="block-header"><span class="text-bold">【入住與退房流程】</span><span class="text-desc">什麼時候到最剛好？退房後怎麼安排 ▾</span></div><div class="block-body">內容準備中...</div></li>
+                <li class="block-item" onclick="toggleBlock(this)"><div class="block-header"><span class="text-bold">【票券與優惠整理】</span><span class="text-desc">哪些票值得買？怎麼搭最省錢 ▾</span></div><div class="block-body">內容準備中...</div></li>
+                <li class="block-item" onclick="toggleBlock(this)"><div class="block-header"><span class="text-bold">【起床時間建議】</span><span class="text-desc">幾點起床最聰明？不累又能玩到重點 ▾</span></div><div class="block-body">內容準備中...</div></li>
+            </ul>
+        </div>
+
+        <div id="surprise" class="tab-content">
+            <ul>
+                <li class="block-item" onclick="toggleBlock(this)"><div class="block-header"><span class="text-bold">【角色互動體驗】</span><span class="text-desc">不用大排隊也能和角色拍照互動 ▾</span></div><div class="block-body">內容準備中...</div></li>
+                <li class="block-item" onclick="toggleBlock(this)"><div class="block-header"><span class="text-bold">【巴斯光年喚醒】</span><span class="text-desc">叫醒你的不是夢想，是巴斯光年！ ▾</span></div><div class="block-body">內容準備中...</div></li>
+                <li class="block-item" onclick="toggleBlock(this)"><div class="block-header"><span class="text-bold">【飯店免費的禮物】</span><span class="text-desc">哪些可以拿？怎麼拿才不會錯過 ▾</span></div><div class="block-body">內容準備中...</div></li>
+                <li class="block-item" onclick="toggleBlock(this)"><div class="block-header"><span class="text-bold">【電梯互動音效】</span><span class="text-desc">每次搭電梯的驚喜 ▾</span></div><div class="block-body">內容準備中...</div></li>
+                <li class="block-item" onclick="toggleBlock(this)"><div class="block-header"><span class="text-bold">【房間小巧思】</span><span class="text-desc">這些小細節不要錯過 ▾</span></div><div class="block-body">內容準備中...</div></li>
+                <li class="block-item" onclick="toggleBlock(this)"><div class="block-header"><span class="text-bold">【飯店紀念品商店】</span><span class="text-desc">可以提早準備禮物和飯店限定！ ▾</span></div><div class="block-body">內容準備中...</div></li>
+                <li class="block-item" onclick="toggleBlock(this)"><div class="block-header"><span class="text-bold">【早餐內容介紹】</span><span class="text-desc">早上怎麼吃最不趕時間 ▾</span></div><div class="block-body">內容準備中...</div></li>
+            </ul>
+        </div>
+
+        <div id="park" class="tab-content">
+            <ul>
+                <li class="block-item" onclick="toggleBlock(this)"><div class="block-header"><span class="text-bold">【免費提早入園】</span><span class="text-desc">早享怎麼用才有感？適合誰 ▾</span></div><div class="block-body">內容準備中...</div></li>
+                <li class="block-item" onclick="toggleBlock(this)"><div class="block-header"><span class="text-bold">【半日早享卡】</span><span class="text-desc">半天也能玩好玩滿的關鍵 ▾</span></div><div class="block-body">內容準備中...</div></li>
+                <li class="block-item" onclick="toggleBlock(this)"><div class="block-header"><span class="text-bold">【免費接駁車】</span><span class="text-desc">班次怎麼搭？走路還是坐車好 ▾</span></div><div class="block-body">內容準備中...</div></li>
+                <li class="block-item" onclick="toggleBlock(this)"><div class="block-header"><span class="text-bold">【行李寄存與運送】</span><span class="text-desc">行李寄存、進園後怎麼處理最順 ▾</span></div><div class="block-body">內容準備中...</div></li>
+                <li class="block-item" onclick="toggleBlock(this)"><div class="block-header"><span class="text-bold">【園區入園流程】</span><span class="text-desc">從飯店到刷票入園完整流程 ▾</span></div><div class="block-body">內容準備中...</div></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer">Andy's Room Guest Guide</div>
+</div>
+
+<script>
+    function showTab(evt, tabId) {
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        evt.currentTarget.classList.add('active');
+        window.scrollTo(0, 0);
+    }
+    function toggleBlock(el) {
+        el.classList.toggle('open');
+    }
+</script>
 </body>
 </html>
