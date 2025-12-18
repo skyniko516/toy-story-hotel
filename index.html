@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>玩具總動員飯店攻略</title>
+    <style>
+        /* Andy 房間的雲朵藍背景 */
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', "Microsoft JhengHei", sans-serif;
+            background-color: #87CEEB;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* 模擬 App 容器 */
+        .app-container {
+            width: 100%;
+            max-width: 400px;
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border: 8px solid #FFD700;
+        }
+
+        .header { background-color: #87CEEB; padding: 30px 20px; text-align: center; color: white; }
+        .header h1 { margin: 0; font-size: 24px; text-shadow: 2px 2px #FF4500; }
+
+        /* 分頁按鈕 */
+        .tab-menu { display: flex; background: #f0f0f0; padding: 10px; gap: 5px; }
+        .tab-btn { flex: 1; padding: 12px 5px; border: none; border-radius: 15px; background: #ddd; cursor: pointer; font-size: 13px; font-weight: bold; }
+        .tab-btn.active { background: #007bff; color: white; }
+
+        /* 內容區 */
+        .content-area { padding: 25px; min-height: 300px; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        ul { list-style: none; padding: 0; }
+        li { background: #f9f9f9; margin-bottom: 12px; padding: 12px; border-radius: 12px; border-left: 5px solid #FFD700; }
+        .text-bold { font-weight: bold; color: #333; display: block; }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <div class="header">
+        <h1>TOY STORY HOTEL</h1>
+        <p>入住安迪的房間攻略 ☁️</p>
+    </div>
+
+    <div class="tab-menu">
+        <button class="tab-btn active" onclick="showTab('stay')">⭐ 入住必看</button>
+        <button class="tab-btn" onclick="showTab('surprise')">🚀 飯店驚喜</button>
+        <button class="tab-btn" onclick="showTab('park')">🪖 入園相關</button>
+    </div>
+
+    <div class="content-area">
+        <div id="stay" class="tab-content active">
+            <ul>
+                <li><span class="text-bold">📅 訂房攻略</span> 官方預約通常在入住前三個月開放。</li>
+                <li><span class="text-bold">📱 下載 App</span> 所有的預約都在官方 App 內。</li>
+            </ul>
+        </div>
+        <div id="surprise" class="tab-content">
+            <ul>
+                <li><span class="text-bold">🛗 會說話的電梯</span> 聽聽看胡迪跟巴斯的聲音！</li>
+                <li><span class="text-bold">👟 必拿戰利品</span> 房內的拖鞋、明信片都可以帶走。</li>
+            </ul>
+        </div>
+        <div id="park" class="tab-content">
+            <ul>
+                <li><span class="text-bold">⚡ 提早入園</span> 房客專屬 15 分鐘 Happy Entry！</li>
+                <li><span class="text-bold">🎟️ 半日早享卡</span> 記得確認購買細節。</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showTab(tabId) {
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+</script>
+
+</body>
+</html>
