@@ -11,7 +11,7 @@
             --toy-red: #FF4500;
             --toy-green: #32CD32;
             --toy-purple: #9370DB;
-            --block-shadow: #ccc;
+            --klook-orange: #FF5B00;
         }
 
         body {
@@ -40,70 +40,85 @@
         .header { background: var(--andy-blue); padding: 20px; text-align: center; color: white; border-bottom: 4px dashed #fff; }
         .header h1 { margin: 0; font-size: 22px; text-shadow: 2px 2px 0px var(--toy-red); }
 
-        .tab-menu { display: flex; padding: 15px 10px; gap: 8px; background: #f9f9f9; position: sticky; top: 0; z-index: 100; }
-        .tab-btn { flex: 1; padding: 10px; border: none; border-radius: 15px; font-weight: 900; cursor: pointer; box-shadow: 0 4px 0 #ccc; transition: 0.1s; }
+        .tab-menu { display: flex; padding: 15px 10px; gap: 8px; background: #fdfdfd; position: sticky; top: 0; z-index: 100; }
+        .tab-btn { flex: 1; padding: 10px; border: none; border-radius: 15px; font-weight: 900; cursor: pointer; box-shadow: 0 4px 0 #ccc; transition: 0.1s; font-size: 14px; }
         .tab-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 #ccc; }
         .btn-stay.active { background: var(--toy-yellow); color: #8B4513; box-shadow: 0 4px 0 #B8860B; }
         .btn-surprise.active { background: var(--toy-red); color: white; box-shadow: 0 4px 0 #8B0000; }
         .btn-park.active { background: var(--toy-green); color: white; box-shadow: 0 4px 0 #006400; }
 
         .content-area { padding: 15px; background: #fff; }
-        .tab-content { display: none; animation: popUp 0.3s ease; }
+        .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        /* 🧩 樂高積木風格框框 */
+        /* 🧩 積木摺疊框設計 */
         ul { list-style: none; padding: 0; }
-        li {
+        .block-item {
             position: relative;
             background: #fff;
-            margin-bottom: 20px;
-            padding: 20px 15px 15px 35px; /* 左側留空間給卡榫 */
+            margin-bottom: 18px;
             border-radius: 15px;
-            border: 4px solid var(--toy-purple); /* 預設紫色積木 */
-            box-shadow: 0 6px 0px var(--toy-purple); /* 積木厚度 */
-            transition: transform 0.2s;
+            border: 4px solid #eee;
+            box-shadow: 0 6px 0px #eee;
+            cursor: pointer;
+            overflow: hidden;
+            transition: 0.2s;
         }
-        /* 積木左側卡榫 */
-        li::before {
-            content: '';
-            position: absolute;
-            left: 10px; top: 50%;
-            transform: translateY(-50%);
-            width: 12px; height: 35px;
-            background: rgba(0,0,0,0.1);
-            border-radius: 10px;
-        }
-        /* 積木表面圓圈卡榫 */
-        li::after {
-            content: '';
-            position: absolute;
-            top: -10px; left: 30px;
-            width: 20px; height: 10px;
-            background: inherit; /* 跟隨邊框色 */
-            border: 4px solid inherit;
-            border-bottom: none;
-            border-radius: 10px 10px 0 0;
+        
+        /* 積木邊框顏色交替 */
+        .block-item:nth-child(4n+1) { border-color: var(--toy-red); box-shadow: 0 6px 0px #b33000; }
+        .block-item:nth-child(4n+2) { border-color: var(--toy-yellow); box-shadow: 0 6px 0px #ccaa00; }
+        .block-item:nth-child(4n+3) { border-color: var(--toy-green); box-shadow: 0 6px 0px #259425; }
+        .block-item:nth-child(4n+4) { border-color: var(--toy-purple); box-shadow: 0 6px 0px #7a58bf; }
+
+        .block-header { padding: 15px 15px 15px 40px; }
+        .block-header::before {
+            content: ''; position: absolute; left: 15px; top: 20px;
+            width: 12px; height: 12px; background: rgba(0,0,0,0.1); border-radius: 50%;
+            box-shadow: 0 15px 0 rgba(0,0,0,0.1);
         }
 
-        /* 讓不同積木有不同顏色 */
-        li:nth-child(4n+1) { border-color: var(--toy-red); box-shadow: 0 6px 0px #b33000; }
-        li:nth-child(4n+2) { border-color: var(--toy-yellow); box-shadow: 0 6px 0px #ccaa00; }
-        li:nth-child(4n+3) { border-color: var(--toy-green); box-shadow: 0 6px 0px #259425; }
-        li:nth-child(4n+4) { border-color: var(--toy-purple); box-shadow: 0 6px 0px #7a58bf; }
+        .text-bold { font-size: 17px; font-weight: 900; color: #333; display: block; }
+        .text-desc { font-size: 13px; color: #888; margin-top: 4px; display: block; }
 
-        .text-bold { font-size: 17px; font-weight: 900; margin-bottom: 5px; display: block; color: #333; }
-        .text-desc { font-size: 14px; color: #666; font-weight: 500; }
+        .block-body {
+            max-height: 0;
+            padding: 0 20px;
+            background: #fafafa;
+            transition: all 0.3s ease-out;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #444;
+        }
+        .block-item.open .block-body {
+            max-height: 800px;
+            padding: 15px 20px 20px 20px;
+            border-top: 2px dashed #eee;
+        }
+
+        /* 🧡 KLOOK 按鈕設計 */
+        .klook-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--klook-orange);
+            color: white !important;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 12px;
+            margin-top: 15px;
+            font-weight: 900;
+            box-shadow: 0 4px 0 #b33f00;
+            transition: 0.1s;
+        }
+        .klook-link:active { transform: translateY(2px); box-shadow: 0 2px 0 #b33f00; }
 
         .footer { text-align: center; padding: 15px; font-size: 11px; color: #bbb; }
-        @keyframes popUp { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
     </style>
 </head>
 <body>
 
-<div class="cloud-container">
-    <div class="cloud" style="top: 10%; animation-duration: 18s;"></div>
-    <div class="cloud" style="top: 45%; animation-duration: 25s; animation-delay: -5s;"></div>
-</div>
+<div class="cloud-container"><div class="cloud" style="top:10%; animation-duration:18s;"></div><div class="cloud" style="top:45%; animation-duration:25s;"></div></div>
 
 <div class="app-container">
     <div class="header"><h1>玩具總動員飯店懶人包</h1></div>
@@ -116,45 +131,41 @@
     <div class="content-area">
         <div id="stay" class="tab-content active">
             <ul>
-                <li><span class="text-bold">房型怎麼選</span><span class="text-desc">房型差在哪一次看懂</span></li>
-                <li><span class="text-bold">迪士尼怎麼玩</span><span class="text-desc">第一次來也不會走冤枉路的玩法順序</span></li>
-                <li><span class="text-bold">親子設施與活動</span><span class="text-desc">小朋友放電、大人也不無聊的玩法整理</span></li>
-                <li><span class="text-bold">入住與退房流程</span><span class="text-desc">什麼時候到最剛好？退房後怎麼安排</span></li>
-                <li><span class="text-bold">票券與優惠整理</span><span class="text-desc">哪些票值得買？怎麼搭最省錢</span></li>
-                <li><span class="text-bold">起床時間建議</span><span class="text-desc">幾點起床最聰明？不累又能玩到重點</span></li>
+                <li class="block-item" onclick="toggleBlock(this)">
+                    <div class="block-header">
+                        <span class="text-bold">【房型怎麼選】</span>
+                        <span class="text-desc">房型差在哪一次看懂 ▾</span>
+                    </div>
+                    <div class="block-body">
+                        🏨 <b>房型景觀介紹：</b><br>
+                        • <b>廣場景觀：</b>面向門口彈簧狗公園，人氣第一！<br>
+                        • <b>海灣景觀：</b>面向大海，採光極佳。<br>
+                        • <b>一般景觀：</b>面向飯店外圍，CP值最高。<br><br>
+                        💡 所有房間內部裝潢都是<b>安迪的房間</b>，差別僅在窗外風景喔！<br><br>
+                        <a href="https://www.klook.com/zh-TW/hotels/detail/471026-tokyo-disney-resort-toy-story-hotel/" target="_blank" class="klook-link">
+                           🧡 前往 KLOOK 查看房價
+                        </a>
+                    </div>
+                </li>
+                <li class="block-item" onclick="toggleBlock(this)"><div class="block-header"><span class="text-bold">【迪士尼怎麼玩】</span><span class="text-desc">玩法順序 ▾</span></div><div class="block-body">內容準備中...</div></li>
+                <li class="block-item" onclick="toggleBlock(this)"><div class="block-header"><span class="text-bold">【親子設施與活動】</span><span class="text-desc">內容準備中 ▾</span></div><div class="block-body">內容準備中...</div></li>
             </ul>
         </div>
-        <div id="surprise" class="tab-content">
-            <ul>
-                <li><span class="text-bold">角色互動體驗</span><span class="text-desc">不用大排隊也能和角色拍照互動</span></li>
-                <li><span class="text-bold">巴斯光年喚醒</span><span class="text-desc">叫醒你的不是夢想，是巴斯光年！</span></li>
-                <li><span class="text-bold">飯店免費的禮物</span><span class="text-desc">哪些可以拿？怎麼拿才不會錯過</span></li>
-                <li><span class="text-bold">電梯互動音效</span><span class="text-desc">每次搭電梯的驚喜</span></li>
-                <li><span class="text-bold">房間小巧思</span><span class="text-desc">這些小細節不要錯過</span></li>
-                <li><span class="text-bold">飯店紀念品商店</span><span class="text-desc">可以提早準備禮物和飯店限定！</span></li>
-                <li><span class="text-bold">早餐內容介紹</span><span class="text-desc">早上怎麼吃最不趕時間</span></li>
-            </ul>
-        </div>
-        <div id="park" class="tab-content">
-            <ul>
-                <li><span class="text-bold">免費提早入園</span><span class="text-desc">早享怎麼用才有感？適合誰</span></li>
-                <li><span class="text-bold">半日早享卡</span><span class="text-desc">半天也能玩好玩滿的關鍵</span></li>
-                <li><span class="text-bold">免費接駁車</span><span class="text-desc">班次怎麼搭？走路還是坐車好</span></li>
-                <li><span class="text-bold">行李寄存與運送</span><span class="text-desc">行李寄存、進園後怎麼處理最順</span></li>
-                <li><span class="text-bold">園區入園流程</span><span class="text-desc">從飯店到刷票入園完整流程</span></li>
-            </ul>
-        </div>
+        <div id="surprise" class="tab-content"><ul><li class="block-item"><div class="block-header"><span class="text-bold">角色互動體驗</span></div></li></ul></div>
+        <div id="park" class="tab-content"><ul><li class="block-item"><div class="block-header"><span class="text-bold">免費提早入園</span></div></li></ul></div>
     </div>
     <div class="footer">Andy's Room Guest Guide</div>
 </div>
 
 <script>
     function showTab(evt, tabId) {
-        window.scrollTo(0, 0);
         document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         document.getElementById(tabId).classList.add('active');
         evt.currentTarget.classList.add('active');
+    }
+    function toggleBlock(el) {
+        el.classList.toggle('open');
     }
 </script>
 </body>
