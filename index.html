@@ -3,91 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>玩具總動員飯店攻略</title>
+    <title>玩具總動員飯店攻略 App</title>
     <style>
-        /* Andy 房間的雲朵藍背景 */
-        body {
-            font-family: 'Comic Sans MS', 'Chalkboard SE', "Microsoft JhengHei", sans-serif;
-            background-color: #87CEEB;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+        :root {
+            --andy-blue: #87CEEB;
+            --toy-yellow: #FFD700;
+            --toy-red: #FF4500;
+            --toy-green: #32CD32;
+            --toy-purple: #9370DB;
         }
 
-        /* 模擬 App 容器 */
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', "Microsoft JhengHei", sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: var(--andy-blue);
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* ☁️ 雲朵背景 */
+        .cloud {
+            position: fixed;
+            background: white;
+            width: 100px; height: 40px;
+            border-radius: 50px;
+            opacity: 0.8;
+            z-index: -1;
+            animation: moveClouds linear infinite;
+        }
+        .cloud::after, .cloud::before { content: ''; position: absolute; background: white; border-radius: 50%; }
+        .cloud::after { width: 50px; height: 50px; top: -25px; left: 15px; }
+        .cloud::before { width: 40px; height: 40px; top: -15px; left: 45px; }
+
+        @keyframes moveClouds {
+            from { left: -150px; }
+            to { left: 100vw; }
+        }
+
+        /* App 主體 */
         .app-container {
             width: 100%;
             max-width: 400px;
-            background: white;
-            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 40px;
+            border: 8px solid var(--toy-yellow);
+            box-shadow: 0 15px 0px #DAA520, 0 25px 50px rgba(0,0,0,0.2);
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            border: 8px solid #FFD700;
+            z-index: 10;
         }
 
-        .header { background-color: #87CEEB; padding: 30px 20px; text-align: center; color: white; }
-        .header h1 { margin: 0; font-size: 24px; text-shadow: 2px 2px #FF4500; }
+        .header {
+            background-color: var(--andy-blue);
+            padding: 35px 20px;
+            text-align: center;
+            color: white;
+            border-bottom: 5px dashed white;
+        }
+        .header h1 { 
+            margin: 0; 
+            font-size: 26px; 
+            text-shadow: 2px 2px 0px var(--toy-red), 4px 4px 0px rgba(0,0,0,0.1);
+        }
 
-        /* 分頁按鈕 */
-        .tab-menu { display: flex; background: #f0f0f0; padding: 10px; gap: 5px; }
-        .tab-btn { flex: 1; padding: 12px 5px; border: none; border-radius: 15px; background: #ddd; cursor: pointer; font-size: 13px; font-weight: bold; }
-        .tab-btn.active { background: #007bff; color: white; }
+        /* ✨ 超可愛積木按鈕設計 */
+        .tab-menu {
+            display: flex;
+            background: #f9f9f9;
+            padding: 20px 10px;
+            gap: 10px;
+            justify-content: center;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 12px 5px;
+            border: none;
+            border-radius: 15px;
+            font-size: 15px;
+            font-weight: 900;
+            color: #555;
+            background: #eee;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #ccc;
+            transition: all 0.1s;
+            position: relative;
+            top: 0;
+        }
+        /* 按下按鈕的感覺 */
+        .tab-btn:active {
+            top: 3px;
+            box-shadow: 0 2px 0 #ccc;
+        }
+
+        /* 點選後的可愛配色 */
+        .btn-stay.active { 
+            background: var(--toy-yellow); 
+            color: #8B4513; 
+            box-shadow: 0 5px 0 #B8860B; 
+        }
+        .btn-surprise.active { 
+            background: var(--toy-red); 
+            color: white; 
+            box-shadow: 0 5px 0 #8B0000; 
+        }
+        .btn-park.active { 
+            background: var(--toy-green); 
+            color: white; 
+            box-shadow: 0 5px 0 #006400; 
+        }
 
         /* 內容區 */
-        .content-area { padding: 25px; min-height: 300px; }
-        .tab-content { display: none; }
+        .content-area { padding: 20px; min-height: 300px; }
+        .tab-content { display: none; animation: bounceIn 0.5s ease; }
         .tab-content.active { display: block; }
 
-        ul { list-style: none; padding: 0; }
-        li { background: #f9f9f9; margin-bottom: 12px; padding: 12px; border-radius: 12px; border-left: 5px solid #FFD700; }
-        .text-bold { font-weight: bold; color: #333; display: block; }
+        @keyframes bounceIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            70% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        li {
+            background: #fff;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 20px;
+            border: 2px solid #f0f0f0;
+            box-shadow: 5px 5px 0px #f0f0f0;
+        }
+        .text-bold { color: var(--toy-purple); font-size: 17px; font-weight: bold; margin-bottom: 5px; display: block; }
+        .text-desc { font-size: 14px; color: #555; line-height: 1.6; }
+
+        .footer { text-align: center; padding: 15px; font-size: 12px; color: #bbb; letter-spacing: 1px; }
     </style>
 </head>
 <body>
 
+<div class="cloud" style="top: 15%; animation-duration: 20s;"></div>
+<div class="cloud" style="top: 45%; animation-duration: 30s; animation-delay: -10s;"></div>
+
 <div class="app-container">
     <div class="header">
-        <h1>TOY STORY HOTEL</h1>
-        <p>入住安迪的房間攻略 ☁️</p>
+        <h1>Toy Story Hotel</h1>
+        <p>🚀 警長安迪的機密攻略 🤠</p>
     </div>
 
     <div class="tab-menu">
-        <button class="tab-btn active" onclick="showTab('stay')">⭐ 入住必看</button>
-        <button class="tab-btn" onclick="showTab('surprise')">🚀 飯店驚喜</button>
-        <button class="tab-btn" onclick="showTab('park')">🪖 入園相關</button>
+        <button class="tab-btn btn-stay active" onclick="showTab(event, 'stay')">⭐ 必看</button>
+        <button class="tab-btn btn-surprise" onclick="showTab(event, 'surprise')">🚀 驚喜</button>
+        <button class="tab-btn btn-park" onclick="showTab(event, 'park')">🪖 入園</button>
     </div>
 
     <div class="content-area">
         <div id="stay" class="tab-content active">
             <ul>
-                <li><span class="text-bold">📅 訂房攻略</span> 官方預約通常在入住前三個月開放。</li>
-                <li><span class="text-bold">📱 下載 App</span> 所有的預約都在官方 App 內。</li>
+                <li><span class="text-bold">📅 搶房作戰</span><span class="text-desc">三個月前台灣時間 10:00 準時官網報到！建議多人多機同時搶。</span></li>
+                <li><span class="text-bold">☁️ 房型重點</span><span class="text-desc">想看彈簧狗公園請選「廣場景觀」。</span></li>
             </ul>
         </div>
         <div id="surprise" class="tab-content">
             <ul>
-                <li><span class="text-bold">🛗 會說話的電梯</span> 聽聽看胡迪跟巴斯的聲音！</li>
-                <li><span class="text-bold">👟 必拿戰利品</span> 房內的拖鞋、明信片都可以帶走。</li>
+                <li><span class="text-bold">🎁 必帶紀念品</span><span class="text-desc">拖鞋、特製盥洗包、明信片，全部都是免費贈送的寶物！</span></li>
+                <li><span class="text-bold">🦖 會說話的電梯</span><span class="text-desc">電梯裡有巴斯跟胡迪的聲音，每一趟都很有戲。</span></li>
             </ul>
         </div>
         <div id="park" class="tab-content">
             <ul>
-                <li><span class="text-bold">⚡ 提早入園</span> 房客專屬 15 分鐘 Happy Entry！</li>
-                <li><span class="text-bold">🎟️ 半日早享卡</span> 記得確認購買細節。</li>
+                <li><span class="text-bold">⚡ Happy Entry</span><span class="text-desc">房客專屬提早 15 分鐘入園。這段時間請用來衝熱門設施！</span></li>
+                <li><span class="text-bold">🎟️ 半日早享卡</span><span class="text-desc">入園後立刻打開 App 搶預約，這 15 分鐘是黃金時間。</span></li>
             </ul>
         </div>
     </div>
+    <div class="footer">~ To Infinity and Beyond ~</div>
 </div>
 
 <script>
-    function showTab(tabId) {
+    function showTab(evt, tabId) {
         document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         document.getElementById(tabId).classList.add('active');
-        event.currentTarget.classList.add('active');
+        evt.currentTarget.classList.add('active');
     }
 </script>
 
