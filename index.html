@@ -17,7 +17,6 @@
         body { font-family: "Microsoft JhengHei", sans-serif; margin: 0; padding: 15px; background-color: var(--andy-blue); display: flex; justify-content: center; line-height: 1.5; }
         .cute-font { font-family: 'Zen Maru Gothic', sans-serif !important; font-weight: 900; }
         
-        /* 詢問彈窗修復 */
         #quiz-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center; z-index: 9999; backdrop-filter: blur(8px); }
         .quiz-card { width: 85%; max-width: 320px; background: white; border-radius: 35px; border: 8px solid var(--toy-yellow); padding: 35px 20px; text-align: center; box-shadow: 0 10px 0px #DAA520; }
         .quiz-btns { display: flex; flex-direction: column; gap: 14px; margin-top: 20px; }
@@ -77,13 +76,13 @@
                 <li class="block-item" onclick="toggleBlock(this)">
                     <div class="block-header"><span class="text-bold cute-font">【房型怎麼選】</span><span class="text-desc">房型差在哪一次看懂 ▾</span></div>
                     <div class="block-body">
-                        ⚠️ <b>首先注意：</b> 以下三種房型都沒有三眼怪裝飾喔！<br><br>
+                        ⚠️ <b>首先注意：</b>這三個房間都不會有三眼怪那些東西！<br><br>
                         🌲 <b>花園房：</b>看到樹林景觀。<br>
-                        🚀 <b>庭院房：</b>看到中庭的大型巴斯光年。<br>
+                        🚀 <b>庭院房：</b>看到大型巴斯光年。<br>
                         🏰 <b>樂園房：</b>高樓層看到樂園。<br><br>
                         ✨ <b>想要特定角色主題？</b><br>
-                        • 想要<b>三眼怪</b>：一定要選「巴斯光年主題房」。<br>
-                        • 喜歡<b>胡迪/翠絲</b>：一定要選「胡迪翠絲主題房」。
+                        • 想要<b>三眼怪</b>：要選「巴斯光年主題房」。<br>
+                        • 喜歡<b>胡迪/翠絲</b>：要選「胡迪翠絲主題房」。
                     </div>
                 </li>
                 <li id="kid-block" class="block-item" onclick="toggleBlock(this)">
@@ -93,8 +92,12 @@
                 <li class="block-item" onclick="toggleBlock(this)">
                     <div class="block-header"><span class="text-bold cute-font">【入住與退房流程】</span><span class="text-desc">時間安排與行李直送 ▾</span></div>
                     <div class="block-body">
-                        🔑 <b>入住：</b>15:00 正式入住。建議提早報到寄放行李，行李會直接送進房間。<br>
-                        📦 <b>退房：</b>11:00 前。房卡<b>不需歸還</b>可帶回家收藏。可請飯店將行李送到樂園遊客中心。
+                        🔑 <b>入住 (Check-in)：</b><br>
+                        • 15:00正式入住，但報到和行李寄存會等待，建議提早去。報到時需看證件&核對入住人。<br>
+                        • 飯店可直接買<b>迪士尼半日券</b>（15:00入場）。辦理完入住，行李寄放完說好房號就可以衝園區了，回來行李就會直接出現在房間！<br><br>
+                        📦 <b>退房 (Check-out)：</b><br>
+                        • 正常是11:00，延遲退房可問櫃檯，一般可以到12:00。<br>
+                        • <b>退房不用還房卡</b>，房卡可以自己收藏紀念。行李也可以寄放或直接幫你送去樂園遊客中心。
                     </div>
                 </li>
             </ul>
@@ -104,23 +107,39 @@
             <ul>
                 <li class="block-item" onclick="toggleBlock(this)">
                     <div class="block-header"><span class="text-bold cute-font">【角色互動體驗】</span><span class="text-desc">捕獲胡迪與巴斯 ▾</span></div>
-                    <div class="block-body">⏰ 15:00 左右大廳音樂響起即開始！晚上 20:00 後大廳或 2 樓遊樂屋也有隨機互動。</div>
+                    <div class="block-body">
+                        ⏰ 下午 <b>15:00 左右</b>開始，會有 2 個玩具朋友隨機出現。<br>
+                        🎵 當 1 樓大廳響起音樂，代表有人出來見面囉！排隊 15 分鐘內就能拍到。角色有胡迪、翠絲、巴斯、牧羊女等。<br>
+                        🌙 晚上 20:00-20:30 大廳有互動；20:30-21:00 在 2 樓遊樂屋也會有驚喜！
+                    </div>
                 </li>
                 <li class="block-item" onclick="toggleBlock(this)">
                     <div class="block-header"><span class="text-bold cute-font">【巴斯光年喚醒】</span><span class="text-desc">巴斯光年打給你 ▾</span></div>
-                    <div class="block-body">前晚用房間電話預約，隔天巴斯會親自打電話叫你起床。</div>
+                    <div class="block-body">前晚用房間電話預約叫醒服務，隔天巴斯光年會打電話叫你起床！第一通沒接到沒關係，還會有第二通。</div>
                 </li>
                 <li class="block-item" onclick="toggleBlock(this)">
                     <div class="block-header"><span class="text-bold cute-font">【飯店禮品】</span><span class="text-desc">這些通通可以帶回家 ▾</span></div>
-                    <div class="block-body">🛍️ 購物袋、行李吊牌、貼紙包、Logo 拖鞋、印有三眼怪的浴巾。⚠️ 娃娃和馬克杯不可帶走。</div>
+                    <div class="block-body">
+                        🛍️ <b>備品：</b>藍色購物袋、筆、便利貼、行李吊牌、貼紙包。<br>
+                        💳 <b>房卡：</b>共有 4 款，可以跟店員說想要哪個角色。<br>
+                        🚿 <b>洗漱：</b>Logo 拖鞋（2大1小）、牙刷組、三眼怪浴巾。<br>
+                        ⚠️ 娃娃和馬克杯不能帶走！
+                    </div>
                 </li>
                 <li class="block-item" onclick="toggleBlock(this)">
                     <div class="block-header"><span class="text-bold cute-font">【飯店小巧思】</span><span class="text-desc">隱藏細節攻略 ▾</span></div>
-                    <div class="block-body">三眼怪電梯報樓層、夜光星空天花板、草莓熊商店限定款玩偶。</div>
+                    <div class="block-body">
+                        🚀 三眼怪電梯報樓層、大廳盯著你看的巴斯畫、花園大型巴斯&三眼怪火箭、夜光星空天花板。<br>
+                        🧸 飯店草莓熊商店可以買到限定款玩偶。
+                    </div>
                 </li>
                 <li class="block-item" onclick="toggleBlock(this)">
                     <div class="block-header"><span class="text-bold cute-font">【早餐的選擇】</span><span class="text-desc">最聰明的用餐時間 ▾</span></div>
-                    <div class="block-body">建議利用早享先入園玩，10:00 再回飯店慢慢吃，11:00 前收餐。</div>
+                    <div class="block-body">
+                        ⏰ 06:30-11:00。為了不浪費提早入園權限：<br>
+                        🍴 <b>方案A：</b>06:20吃，06:50吃完衝園區。<br>
+                        🏰 <b>方案B(推)：</b>先利用早享玩完，10:00回飯店慢慢吃，11:00前拿完餐即可。
+                    </div>
                 </li>
             </ul>
         </div>
@@ -130,19 +149,20 @@
                 <li class="block-item" onclick="toggleBlock(this)">
                     <div class="block-header"><span class="text-bold cute-font">【免費提早入園】</span><span class="text-desc">早享 1 小時實戰攻略 ▾</span></div>
                     <div class="block-body">
-                        ⏰ <b>個人行程：</b>06:30 吃餐、06:55 叫滴滴、07:30 入園。<br>
-                        🏎️ <b>秘訣：</b>趁這 1 小時排熱力追蹤「一般通道」，可以看到更多電影劇情場景！
+                        🎫 入住送提早 1 小時入園卡。我的行程：<br>
+                        06:30 早餐 → 06:55 叫<b>滴滴</b>（近又便宜，避開接駁車人潮） → 07:07 抵達 → 07:30 正式入園。<br><br>
+                        🏎️ <b>秘訣：</b>排「熱力追蹤」一般隊伍，可以看到更多場景和劇情，之後再用快通玩第二次！
                     </div>
                 </li>
                 <li class="block-item" onclick="toggleBlock(this)">
                     <div class="block-header"><span class="text-bold cute-font">【半日早享卡】</span><span class="text-desc">15:00 入園優勢 ▾</span></div>
-                    <div class="block-body">入住後櫃檯購買。先看遊行煙火、熟悉接駁車動線，把隔天時間留給熱門設施。</div>
+                    <div class="block-body">15:00 就能入園，剛好可以熟悉接駁車上下車地點。這半天可以先看花車遊行和煙火卡位，把隔天時間留給設施。</div>
                 </li>
                 <li class="block-item" onclick="toggleBlock(this)">
-                    <div class="block-header"><span class="text-bold cute-font">【免費接駁車】</span><span class="text-desc">班次與人潮避開指南 ▾</span></div>
+                    <div class="block-header"><span class="text-bold cute-font">【免費接駁車】</span><span class="text-desc">班次與人潮指南 ▾</span></div>
                     <div class="block-body">
-                        🚌 07:00-23:00，約 10 分鐘一班。車程僅 5 分鐘。<br>
-                        💡 除了 06:30 首班車人潮較多，後續班次都很空。
+                        🚌 07:00-23:00。10 分鐘一班，5 分鐘到園區。<br>
+                        💡 除了第一班車人很多，後續班次都很舒服。
                     </div>
                 </li>
             </ul>
@@ -153,19 +173,16 @@
 
 <script>
     function setMode(withKids) {
-        // 使用徹底刪除彈窗的方式，避免擋住後方點擊
         const overlay = document.getElementById('quiz-overlay');
         if (overlay) {
             overlay.style.opacity = '0';
             setTimeout(() => { overlay.remove(); }, 300);
         }
-        
         if (!withKids) {
             const kb = document.getElementById('kid-block');
             if(kb) kb.remove();
         }
     }
-
     function showTab(evt, tabId) {
         document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -173,7 +190,6 @@
         evt.currentTarget.classList.add('active');
         window.scrollTo(0, 0);
     }
-
     function toggleBlock(el) {
         el.classList.toggle('open');
     }
