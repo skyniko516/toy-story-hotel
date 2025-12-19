@@ -16,33 +16,39 @@
         }
         body { font-family: "Microsoft JhengHei", sans-serif; margin: 0; padding: 15px; background-color: var(--andy-blue); display: flex; justify-content: center; line-height: 1.5; }
         .cute-font { font-family: 'Zen Maru Gothic', sans-serif !important; font-weight: 900; }
-        #quiz-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; justify-content: center; align-items: center; z-index: 2000; backdrop-filter: blur(8px); }
-        .quiz-card { width: 85%; max-width: 320px; background: white; border-radius: 35px; border: 8px solid var(--toy-yellow); padding: 35px 20px; text-align: center; box-shadow: 0 10px 0px #DAA520; animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        
+        /* 詢問彈窗修復 */
+        #quiz-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center; z-index: 9999; backdrop-filter: blur(8px); }
+        .quiz-card { width: 85%; max-width: 320px; background: white; border-radius: 35px; border: 8px solid var(--toy-yellow); padding: 35px 20px; text-align: center; box-shadow: 0 10px 0px #DAA520; }
         .quiz-btns { display: flex; flex-direction: column; gap: 14px; margin-top: 20px; }
-        .quiz-btn { padding: 16px; border: none; border-radius: 20px; font-size: 18px; font-weight: bold; cursor: pointer; background: var(--btn-gray) !important; color: #888 !important; box-shadow: 0 4px 0 #ddd; transition: 0.2s; outline: none; }
-        .btn-yes:hover { background: var(--toy-yellow) !important; color: #8B4513 !important; box-shadow: 0 4px 0 #B8860B; transform: translateY(-2px); }
-        .btn-no:hover { background: var(--andy-blue) !important; color: white !important; box-shadow: 0 4px 0 #5DA9C9; transform: translateY(-2px); }
-        .app-container { width: 100%; max-width: 400px; background: #fff; border-radius: 40px; border: 8px solid var(--toy-yellow); box-shadow: 0 10px 0px #DAA520; overflow: hidden; z-index: 10; margin-top: 10px; }
+        .quiz-btn { padding: 16px; border: none; border-radius: 20px; font-size: 18px; font-weight: bold; cursor: pointer; background: var(--btn-gray); color: #888; box-shadow: 0 4px 0 #ddd; transition: 0.2s; }
+        .btn-yes { background: var(--toy-yellow) !important; color: #8B4513 !important; box-shadow: 0 4px 0 #B8860B !important; }
+        .btn-no { background: var(--andy-blue) !important; color: white !important; box-shadow: 0 4px 0 #5DA9C9 !important; }
+
+        .app-container { width: 100%; max-width: 400px; background: #fff; border-radius: 40px; border: 8px solid var(--toy-yellow); box-shadow: 0 10px 0px #DAA520; overflow: hidden; position: relative; }
         .header { background: var(--andy-blue); padding: 25px 20px; text-align: center; color: white; border-bottom: 4px dashed #fff; }
         .header h1 { margin: 0; font-size: 24px; text-shadow: 2.5px 2.5px 0px var(--toy-red); }
         .tab-menu { display: flex; padding: 15px 10px; gap: 8px; background: #fdfdfd; position: sticky; top: 0; z-index: 100; }
         .tab-btn { flex: 1; padding: 10px; border: none; border-radius: 15px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 0 #ccc; font-size: 14px; background: #eee; }
         .tab-btn.active { background: var(--toy-yellow); color: #8B4513; box-shadow: 0 4px 0 #B8860B; }
+        
         .content-area { padding: 15px; background: #fff; min-height: 500px; }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
+        
         ul { list-style: none; padding: 0; margin: 0; }
-        .block-item { position: relative; background: #fff; margin-bottom: 18px; border-radius: 18px; border: 4px solid #eee; box-shadow: 0 6px 0px #eee; cursor: pointer; transition: 0.2s; }
+        .block-item { position: relative; background: #fff; margin-bottom: 18px; border-radius: 18px; border: 4px solid #eee; box-shadow: 0 6px 0px #eee; cursor: pointer; }
         .block-item:nth-child(4n+1) { border-color: var(--toy-red); }
         .block-item:nth-child(4n+2) { border-color: var(--toy-yellow); }
         .block-item:nth-child(4n+3) { border-color: var(--toy-green); }
         .block-item:nth-child(4n+4) { border-color: var(--toy-purple); }
+        
         .block-header { padding: 15px 15px 15px 40px; }
         .text-bold { font-size: 18px; color: #333; display: block; }
         .text-desc { font-size: 13px; color: #777; }
-        .block-body { max-height: 0; padding: 0 20px; overflow: hidden; background: #fafafa; transition: all 0.3s ease-out; font-size: 15px; color: #444; }
-        .block-item.open .block-body { max-height: 1000px; padding: 15px 20px 20px 20px; border-top: 2px dashed #eee; }
-        @keyframes popIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .block-body { max-height: 0; padding: 0 20px; overflow: hidden; background: #fafafa; transition: all 0.3s ease-out; font-size: 15px; color: #444; border-top: 0px dashed #eee; }
+        .block-item.open .block-body { max-height: 2000px; padding: 15px 20px; border-top-width: 2px; }
+        .footer { text-align: center; padding: 15px; font-size: 11px; color: #bbb; }
     </style>
 </head>
 <body>
@@ -71,23 +77,24 @@
                 <li class="block-item" onclick="toggleBlock(this)">
                     <div class="block-header"><span class="text-bold cute-font">【房型怎麼選】</span><span class="text-desc">房型差在哪一次看懂 ▾</span></div>
                     <div class="block-body">
-                        ⚠️ <b>首先注意：</b> 以下三種房型都沒有三眼怪裝飾喔！<br>
-                        🌲 <b>花園房：</b>看到樹林。<br>
-                        🚀 <b>庭院房：</b>看到大型巴斯光年。<br>
+                        ⚠️ <b>首先注意：</b> 以下三種房型都沒有三眼怪裝飾喔！<br><br>
+                        🌲 <b>花園房：</b>看到樹林景觀。<br>
+                        🚀 <b>庭院房：</b>看到中庭的大型巴斯光年。<br>
                         🏰 <b>樂園房：</b>高樓層看到樂園。<br><br>
-                        ✨ <b>想要三眼怪：</b>選「巴斯光年主題房」。<br>
-                        ✨ <b>想要胡迪/翠絲：</b>選「胡迪翠絲主題房」。
+                        ✨ <b>想要特定角色主題？</b><br>
+                        • 想要<b>三眼怪</b>：一定要選「巴斯光年主題房」。<br>
+                        • 喜歡<b>胡迪/翠絲</b>：一定要選「胡迪翠絲主題房」。
                     </div>
                 </li>
                 <li id="kid-block" class="block-item" onclick="toggleBlock(this)">
-                    <div class="block-header"><span class="text-bold cute-font">【親子設施與活動】</span><span class="text-desc">小朋友放電玩法整理 ▾</span></div>
-                    <div class="block-body">飯店提供兒童睡衣、床圍借用，彈簧狗公園是最佳放電場地！</div>
+                    <div class="block-header"><span class="text-bold cute-font">【親子設施與活動】</span><span class="text-desc">小朋友專屬福利 ▾</span></div>
+                    <div class="block-body">✨ <b>親子友善服務：</b>飯店提供兒童睡衣、床圍借用，門口的彈簧狗公園超好放電！</div>
                 </li>
                 <li class="block-item" onclick="toggleBlock(this)">
-                    <div class="block-header"><span class="text-bold cute-font">【入住與退房流程】</span><span class="text-desc">寄存行李與房卡細節 ▾</span></div>
+                    <div class="block-header"><span class="text-bold cute-font">【入住與退房流程】</span><span class="text-desc">時間安排與行李直送 ▾</span></div>
                     <div class="block-body">
-                        🔑 15:00 入住，建議提早報到寄行李（會直接送到房間）。<br>
-                        📦 11:00 退房，房卡免歸還可帶回家紀念！延退可詢問櫃檯（通常到 12:00）。
+                        🔑 <b>入住：</b>15:00 正式入住。建議提早報到寄放行李，行李會直接送進房間。<br>
+                        📦 <b>退房：</b>11:00 前。房卡<b>不需歸還</b>可帶回家收藏。可請飯店將行李送到樂園遊客中心。
                     </div>
                 </li>
             </ul>
@@ -97,23 +104,23 @@
             <ul>
                 <li class="block-item" onclick="toggleBlock(this)">
                     <div class="block-header"><span class="text-bold cute-font">【角色互動體驗】</span><span class="text-desc">捕獲胡迪與巴斯 ▾</span></div>
-                    <div class="block-body">⏰ 15:00 左右大廳音樂響起即開始！排隊約 15 分鐘可拍到。晚上 20:00 後大廳/遊樂屋也有隨機互動。</div>
+                    <div class="block-body">⏰ 15:00 左右大廳音樂響起即開始！晚上 20:00 後大廳或 2 樓遊樂屋也有隨機互動。</div>
                 </li>
                 <li class="block-item" onclick="toggleBlock(this)">
-                    <div class="block-header"><span class="text-bold cute-font">【巴斯光年喚醒】</span><span class="text-desc">叫醒你的不是夢想 ▾</span></div>
-                    <div class="block-body">前晚用房間電話預約，隔天巴斯會打電話叫你起床。</div>
+                    <div class="block-header"><span class="text-bold cute-font">【巴斯光年喚醒】</span><span class="text-desc">巴斯光年打給你 ▾</span></div>
+                    <div class="block-body">前晚用房間電話預約，隔天巴斯會親自打電話叫你起床。</div>
                 </li>
                 <li class="block-item" onclick="toggleBlock(this)">
                     <div class="block-header"><span class="text-bold cute-font">【飯店禮品】</span><span class="text-desc">這些通通可以帶回家 ▾</span></div>
-                    <div class="block-body">🛍️ 購物袋、行李吊牌、貼紙包、Logo 拖鞋、浴巾。⚠️ 娃娃和馬克杯不可帶走。</div>
+                    <div class="block-body">🛍️ 購物袋、行李吊牌、貼紙包、Logo 拖鞋、印有三眼怪的浴巾。⚠️ 娃娃和馬克杯不可帶走。</div>
                 </li>
                 <li class="block-item" onclick="toggleBlock(this)">
-                    <div class="block-header"><span class="text-bold cute-font">【飯店小巧思】</span><span class="text-desc">細節不要錯過 ▾</span></div>
-                    <div class="block-body">三眼怪電梯報樓層、盯著你看的巴斯畫、夜光星空天花板、草莓熊商店限定玩偶。</div>
+                    <div class="block-header"><span class="text-bold cute-font">【飯店小巧思】</span><span class="text-desc">隱藏細節攻略 ▾</span></div>
+                    <div class="block-body">三眼怪電梯報樓層、夜光星空天花板、草莓熊商店限定款玩偶。</div>
                 </li>
                 <li class="block-item" onclick="toggleBlock(this)">
-                    <div class="block-header"><span class="text-bold cute-font">【早餐的選擇】</span><span class="text-desc">兼顧入園與美食 ▾</span></div>
-                    <div class="block-body">建議先利用早享進園玩，10:00 再回飯店慢慢吃，11:00 前收餐。</div>
+                    <div class="block-header"><span class="text-bold cute-font">【早餐的選擇】</span><span class="text-desc">最聰明的用餐時間 ▾</span></div>
+                    <div class="block-body">建議利用早享先入園玩，10:00 再回飯店慢慢吃，11:00 前收餐。</div>
                 </li>
             </ul>
         </div>
@@ -121,21 +128,21 @@
         <div id="park" class="tab-content">
             <ul>
                 <li class="block-item" onclick="toggleBlock(this)">
-                    <div class="block-header"><span class="text-bold cute-font">【免費提早入園】</span><span class="text-desc">早享 1 小時個人攻略 ▾</span></div>
+                    <div class="block-header"><span class="text-bold cute-font">【免費提早入園】</span><span class="text-desc">早享 1 小時實戰攻略 ▾</span></div>
                     <div class="block-body">
-                        06:30 吃早餐，06:55 叫滴滴（避開接駁車人潮），07:30 正式入園。<br>
-                        🏎️ <b>秘訣：</b>利用這 1 小時排熱力追蹤「一般通道」看場景！
+                        ⏰ <b>個人行程：</b>06:30 吃餐、06:55 叫滴滴、07:30 入園。<br>
+                        🏎️ <b>秘訣：</b>趁這 1 小時排熱力追蹤「一般通道」，可以看到更多電影劇情場景！
                     </div>
                 </li>
                 <li class="block-item" onclick="toggleBlock(this)">
-                    <div class="block-header"><span class="text-bold cute-font">【半日早享卡】</span><span class="text-desc">15:00 入園場勘 ▾</span></div>
-                    <div class="block-body">辦理入住後櫃檯購買。先看花車煙火、熟悉接駁車動線，隔天就能專心衝設施。</div>
+                    <div class="block-header"><span class="text-bold cute-font">【半日早享卡】</span><span class="text-desc">15:00 入園優勢 ▾</span></div>
+                    <div class="block-body">入住後櫃檯購買。先看遊行煙火、熟悉接駁車動線，把隔天時間留給熱門設施。</div>
                 </li>
                 <li class="block-item" onclick="toggleBlock(this)">
-                    <div class="block-header"><span class="text-bold cute-font">【免費接駁車】</span><span class="text-desc">班次與搭乘建議 ▾</span></div>
+                    <div class="block-header"><span class="text-bold cute-font">【免費接駁車】</span><span class="text-desc">班次與人潮避開指南 ▾</span></div>
                     <div class="block-body">
-                        ⏰ 07:00-23:00，10 分鐘一班，車程約 5 分鐘。<br>
-                        💡 除了 06:30 首班車人多，其他班次都很舒服。
+                        🚌 07:00-23:00，約 10 分鐘一班。車程僅 5 分鐘。<br>
+                        💡 除了 06:30 首班車人潮較多，後續班次都很空。
                     </div>
                 </li>
             </ul>
@@ -145,9 +152,31 @@
 </div>
 
 <script>
-    function setMode(withKids) { document.getElementById('quiz-overlay').style.display = 'none'; if (!withKids) { const kb = document.getElementById('kid-block'); if(kb) kb.remove(); } }
-    function showTab(evt, tabId) { document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active')); document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active')); document.getElementById(tabId).classList.add('active'); evt.currentTarget.classList.add('active'); window.scrollTo(0,0); }
-    function toggleBlock(el) { el.classList.toggle('open'); }
+    function setMode(withKids) {
+        // 使用徹底刪除彈窗的方式，避免擋住後方點擊
+        const overlay = document.getElementById('quiz-overlay');
+        if (overlay) {
+            overlay.style.opacity = '0';
+            setTimeout(() => { overlay.remove(); }, 300);
+        }
+        
+        if (!withKids) {
+            const kb = document.getElementById('kid-block');
+            if(kb) kb.remove();
+        }
+    }
+
+    function showTab(evt, tabId) {
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        evt.currentTarget.classList.add('active');
+        window.scrollTo(0, 0);
+    }
+
+    function toggleBlock(el) {
+        el.classList.toggle('open');
+    }
 </script>
 </body>
 </html>
