@@ -14,6 +14,7 @@
             --toy-green: #32CD32;
             --toy-purple: #9370DB;
             --klook-orange: #FF5B00;
+            --btn-gray: #f0f0f0;
         }
 
         body {
@@ -35,66 +36,74 @@
         }
         .quiz-card {
             width: 85%; max-width: 320px;
-            background: white; border-radius: 30px;
-            border: 6px solid var(--toy-yellow);
-            padding: 30px 20px; text-align: center;
-            box-shadow: 0 10px 0 #DAA520;
+            background: white; border-radius: 35px;
+            border: 8px solid var(--toy-yellow);
+            padding: 35px 20px; text-align: center;
+            box-shadow: 0 10px 0px #DAA520;
             animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        @keyframes popIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         
-        .quiz-title { font-size: 20px; color: #333; margin-bottom: 20px; line-height: 1.4; }
-        .quiz-btns { display: flex; flex-direction: column; gap: 12px; }
+        .quiz-title { font-size: 20px; color: #444; margin-bottom: 25px; line-height: 1.5; }
+        .quiz-btns { display: flex; flex-direction: column; gap: 14px; }
+        
+        /* 🔘 按鈕初始：中立灰 */
         .quiz-btn {
-            padding: 15px; border: none; border-radius: 15px;
+            padding: 16px; border: none; border-radius: 20px;
             font-size: 18px; font-weight: bold; cursor: pointer;
-            transition: 0.1s;
+            background: var(--btn-gray); color: #888;
+            box-shadow: 0 4px 0 #ddd;
+            transition: all 0.25s ease;
         }
-        .btn-yes { background: var(--toy-green); color: white; box-shadow: 0 4px 0 #006400; }
-        .btn-no { background: #eee; color: #777; box-shadow: 0 4px 0 #ccc; }
-        .quiz-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 transparent; }
 
-        /* App 容器與雲朵 */
+        /* 🖱️ 滑鼠滑入：黃色與藍色 */
+        .btn-yes:hover {
+            background: var(--toy-yellow);
+            color: #8B4513; /* 咖啡色字 */
+            box-shadow: 0 4px 0 #B8860B;
+            transform: translateY(-2px);
+        }
+        .btn-no:hover {
+            background: var(--andy-blue);
+            color: white;
+            box-shadow: 0 4px 0 #5DA9C9;
+            transform: translateY(-2px);
+        }
+
+        .quiz-btn:active { transform: translateY(2px); box-shadow: 0 0px 0 transparent; }
+
+        /* App 容器與原有樣式 */
         .cloud-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
         .cloud { position: absolute; background: white; width: 80px; height: 30px; border-radius: 50px; opacity: 0.8; animation: moveClouds linear infinite; }
         .cloud::after, .cloud::before { content: ''; position: absolute; background: white; border-radius: 50%; }
         .cloud::after { width: 40px; height: 40px; top: -20px; left: 10px; }
         .cloud::before { width: 30px; height: 30px; top: -10px; left: 35px; }
         @keyframes moveClouds { from { transform: translateX(-150px); } to { transform: translateX(110vw); } }
-
+        
         .app-container { width: 100%; max-width: 400px; background: #fff; border-radius: 40px; border: 8px solid var(--toy-yellow); box-shadow: 0 10px 0px #DAA520, 0 20px 40px rgba(0,0,0,0.2); overflow: hidden; z-index: 10; }
         .header { background: var(--andy-blue); padding: 25px 20px; text-align: center; color: white; border-bottom: 4px dashed #fff; }
         .header h1 { margin: 0; font-size: 24px; text-shadow: 2.5px 2.5px 0px var(--toy-red); }
-
         .tab-menu { display: flex; padding: 15px 10px; gap: 8px; background: #fdfdfd; position: sticky; top: 0; z-index: 100; }
         .tab-btn { flex: 1; padding: 10px; border: none; border-radius: 15px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 0 #ccc; transition: 0.1s; font-size: 14px; }
         .btn-stay.active { background: var(--toy-yellow); color: #8B4513; box-shadow: 0 4px 0 #B8860B; }
         .btn-surprise.active { background: var(--toy-red); color: white; box-shadow: 0 4px 0 #8B0000; }
         .btn-park.active { background: var(--toy-green); color: white; box-shadow: 0 4px 0 #006400; }
-
         .content-area { padding: 15px; background: #fff; min-height: 500px; }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
-        
-        /* 積木樣式 */
         ul { list-style: none; padding: 0; margin: 0; }
         .block-item { position: relative; background: #fff; margin-bottom: 18px; border-radius: 18px; border: 4px solid #eee; box-shadow: 0 6px 0px #eee; cursor: pointer; overflow: hidden; transition: 0.2s; }
         .block-item:nth-child(4n+1) { border-color: var(--toy-red); box-shadow: 0 6px 0px #b33000; }
         .block-item:nth-child(4n+2) { border-color: var(--toy-yellow); box-shadow: 0 6px 0px #ccaa00; }
         .block-item:nth-child(4n+3) { border-color: var(--toy-green); box-shadow: 0 6px 0px #259425; }
         .block-item:nth-child(4n+4) { border-color: var(--toy-purple); box-shadow: 0 6px 0px #7a58bf; }
-
         .block-header { padding: 15px 15px 15px 40px; }
         .block-header::before { content: ''; position: absolute; left: 15px; top: 18px; width: 12px; height: 12px; background: rgba(0,0,0,0.08); border-radius: 50%; box-shadow: 0 15px 0 rgba(0,0,0,0.08); }
         .text-bold { font-size: 18px; color: #333; display: block; margin-bottom: 4px; }
         .text-desc { font-size: 13px; color: #777; display: block; }
         .block-body { max-height: 0; padding: 0 20px; background: #fafafa; transition: all 0.3s ease-out; font-size: 15px; color: #444; }
         .block-item.open .block-body { max-height: 1000px; padding: 15px 20px 20px 20px; border-top: 2px dashed #eee; }
-
-        .kid-highlight { border: 6px solid var(--toy-purple) !important; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { box-shadow: 0 6px 0px var(--toy-purple); } 50% { box-shadow: 0 0px 15px var(--toy-purple); } 100% { box-shadow: 0 6px 0px var(--toy-purple); } }
-
         .footer { text-align: center; padding: 15px; font-size: 11px; color: #bbb; }
+        @keyframes popIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
     </style>
 </head>
 <body>
@@ -121,17 +130,16 @@
 
     <div class="content-area">
         <div id="stay" class="tab-content active">
-            <ul id="stay-list">
+            <ul>
                 <li class="block-item" onclick="toggleBlock(this)">
                     <div class="block-header"><span class="text-bold cute-font">【房型怎麼選】</span><span class="text-desc">房型差在哪一次看懂 ▾</span></div>
-                    <div class="block-body">...內容...</div>
+                    <div class="block-body">住宿攻略內容...</div>
                 </li>
                 <li id="kid-block" class="block-item" onclick="toggleBlock(this)">
                     <div class="block-header"><span class="text-bold cute-font">【親子設施與活動】</span><span class="text-desc">小朋友放電玩法整理 ▾</span></div>
                     <div class="block-body">✨ <b>親子友善服務：</b><br>飯店提供兒童睡衣、床圍借用，彈簧狗公園是最佳放電場地！</div>
                 </li>
-                <li class="block-item" onclick="toggleBlock(this)"><div class="block-header"><span class="text-bold cute-font">【迪士尼怎麼玩】</span><span class="text-desc">不走冤枉路的玩法順序 ▾</span></div><div class="block-body">準備中...</div></li>
-                <li class="block-item" onclick="toggleBlock(this)"><div class="block-header"><span class="text-bold cute-font">【入住與退房流程】</span><span class="text-desc">退房後怎麼安排 ▾</span></div><div class="block-body">準備中...</div></li>
+                <li class="block-item" onclick="toggleBlock(this)"><div class="block-header"><span class="text-bold cute-font">【迪士尼怎麼玩】</span><span class="text-desc">不走冤枉路 ▾</span></div><div class="block-body">內容準備中...</div></li>
             </ul>
         </div>
         </div>
@@ -142,15 +150,9 @@
     function setMode(withKids) {
         const quiz = document.getElementById('quiz-overlay');
         const kidBlock = document.getElementById('kid-block');
-        
         quiz.style.display = 'none';
-        
-        if (withKids) {
-            // 保留並強調
-            kidBlock.classList.add('kid-highlight');
-        } else {
-            // 直接移除親子積木
-            kidBlock.remove();
+        if (!withKids && kidBlock) {
+            kidBlock.remove(); 
         }
     }
 
@@ -159,7 +161,6 @@
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         document.getElementById(tabId).classList.add('active');
         evt.currentTarget.classList.add('active');
-        window.scrollTo(0, 0);
     }
     function toggleBlock(el) { el.classList.toggle('open'); }
 </script>
