@@ -17,13 +17,15 @@
         body { font-family: "Microsoft JhengHei", sans-serif; margin: 0; padding: 15px; background-color: var(--andy-blue); display: flex; justify-content: center; line-height: 1.5; }
         .cute-font { font-family: 'Zen Maru Gothic', sans-serif !important; font-weight: 900; }
         
+        /* 詢問彈窗樣式 */
         #quiz-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center; z-index: 9999; backdrop-filter: blur(8px); }
         .quiz-card { width: 85%; max-width: 320px; background: white; border-radius: 35px; border: 8px solid var(--toy-yellow); padding: 35px 20px; text-align: center; box-shadow: 0 10px 0px #DAA520; }
         .quiz-btns { display: flex; flex-direction: column; gap: 14px; margin-top: 20px; }
-        .quiz-btn { padding: 16px; border: none; border-radius: 20px; font-size: 18px; font-weight: bold; cursor: pointer; background: var(--btn-gray); color: #888; box-shadow: 0 4px 0 #ddd; transition: 0.2s; }
-        .btn-yes { background: var(--toy-yellow) !important; color: #8B4513 !important; box-shadow: 0 4px 0 #B8860B !important; }
-        .btn-no { background: var(--andy-blue) !important; color: white !important; box-shadow: 0 4px 0 #5DA9C9 !important; }
+        .quiz-btn { padding: 16px; border: none; border-radius: 20px; font-size: 18px; font-weight: bold; cursor: pointer; background: var(--btn-gray) !important; color: #888 !important; box-shadow: 0 4px 0 #ddd; transition: 0.25s; outline: none; }
+        .btn-yes:hover { background: var(--toy-yellow) !important; color: #8B4513 !important; box-shadow: 0 4px 0 #B8860B !important; transform: translateY(-2px); }
+        .btn-no:hover { background: var(--andy-blue) !important; color: white !important; box-shadow: 0 4px 0 #5DA9C9 !important; transform: translateY(-2px); }
 
+        /* 主容器 */
         .app-container { width: 100%; max-width: 400px; background: #fff; border-radius: 40px; border: 8px solid var(--toy-yellow); box-shadow: 0 10px 0px #DAA520; overflow: hidden; position: relative; }
         .header { background: var(--andy-blue); padding: 25px 20px; text-align: center; color: white; border-bottom: 4px dashed #fff; }
         .header h1 { margin: 0; font-size: 24px; text-shadow: 2.5px 2.5px 0px var(--toy-red); }
@@ -48,6 +50,10 @@
         .block-body { max-height: 0; padding: 0 20px; overflow: hidden; background: #fafafa; transition: all 0.3s ease-out; font-size: 15px; color: #444; border-top: 0px dashed #eee; }
         .block-item.open .block-body { max-height: 2000px; padding: 15px 20px; border-top-width: 2px; }
         .footer { text-align: center; padding: 15px; font-size: 11px; color: #bbb; }
+        
+        /* 內容樣式優化 */
+        .info-section { margin-bottom: 15px; }
+        .info-title { font-weight: bold; color: #333; display: block; margin-bottom: 5px; }
     </style>
 </head>
 <body>
@@ -74,30 +80,39 @@
         <div id="stay" class="tab-content active">
             <ul>
                 <li class="block-item" onclick="toggleBlock(this)">
-                    <div class="block-header"><span class="text-bold cute-font">【房型怎麼選】</span><span class="text-desc">房型差在哪一次看懂 ▾</span></div>
+                    <div class="block-header"><span class="text-bold cute-font">【房型怎麼選】</span><span class="text-desc">景觀與主題差異 ▾</span></div>
                     <div class="block-body">
-                        ⚠️ <b>首先注意：</b>這三個房間都不會有三眼怪那些東西！<br><br>
-                        🌲 <b>花園房：</b>看到樹林景觀。<br>
-                        🚀 <b>庭院房：</b>看到大型巴斯光年。<br>
-                        🏰 <b>樂園房：</b>高樓層看到樂園。<br><br>
-                        ✨ <b>想要特定角色主題？</b><br>
-                        • 想要<b>三眼怪</b>：要選「巴斯光年主題房」。<br>
-                        • 喜歡<b>胡迪/翠絲</b>：要選「胡迪翠絲主題房」。
+                        <div class="info-section">
+                            ⚠️ <b>重要提醒：</b>以下三種基礎房型<b>沒有</b>三眼怪或特定角色裝飾喔！<br>
+                            🌲 <b>花園房：</b>窗外為樹林景觀。<br>
+                            🚀 <b>庭院房：</b>可看到中庭的巨型巴斯光年。<br>
+                            🏰 <b>樂園房：</b>位於高樓層，可遠眺樂園風景。
+                        </div>
+                        <div class="info-section">
+                            ✨ <b>角色主題房：</b><br>
+                            • 想要<b>三眼怪</b>：必選「巴斯光年主題房」。<br>
+                            • 想要<b>胡迪/翠絲</b>：必選「胡迪翠絲主題房」。
+                        </div>
                     </div>
                 </li>
                 <li id="kid-block" class="block-item" onclick="toggleBlock(this)">
-                    <div class="block-header"><span class="text-bold cute-font">【親子設施與活動】</span><span class="text-desc">小朋友專屬福利 ▾</span></div>
-                    <div class="block-body">✨ <b>親子友善服務：</b>飯店提供兒童睡衣、床圍借用，門口的彈簧狗公園超好放電！</div>
+                    <div class="block-header"><span class="text-bold cute-font">【親子設施與活動】</span><span class="text-desc">帶娃家長必看 ▾</span></div>
+                    <div class="block-body">
+                        🧸 <b>親子友善服務：</b><br>
+                        • 飯店提供兒童專屬睡衣、床圍借用。<br>
+                        • 門口的<b>彈簧狗公園</b>是小朋友最棒的放電聖地！
+                    </div>
                 </li>
                 <li class="block-item" onclick="toggleBlock(this)">
                     <div class="block-header"><span class="text-bold cute-font">【入住與退房流程】</span><span class="text-desc">時間安排與行李直送 ▾</span></div>
                     <div class="block-body">
                         🔑 <b>入住 (Check-in)：</b><br>
-                        • 15:00正式入住，但報到和行李寄存會等待，建議提早去。報到時需看證件&核對入住人。<br>
-                        • 飯店可直接買<b>迪士尼半日券</b>（15:00入場）。辦理完入住，行李寄放完說好房號就可以衝園區了，回來行李就會直接出現在房間！<br><br>
+                        • <b>正式時間：</b>15:00，建議提早抵達報到。<br>
+                        • <b>半日券攻略：</b>飯店可買 15:00 入場券，辦完手續寄完行李（告知房號），行李會<b>直接送到房間</b>，讓你空手衝園區！<br><br>
                         📦 <b>退房 (Check-out)：</b><br>
-                        • 正常是11:00，延遲退房可問櫃檯，一般可以到12:00。<br>
-                        • <b>退房不用還房卡</b>，房卡可以自己收藏紀念。行李也可以寄放或直接幫你送去樂園遊客中心。
+                        • <b>正式時間：</b>11:00，可詢問櫃檯延長至 12:00。<br>
+                        • <b>驚喜紀念：</b>房卡<b>不用還</b>，直接帶回家收藏！<br>
+                        • <b>行李處理：</b>可寄放或由飯店直送「樂園遊客中心」。
                     </div>
                 </li>
             </ul>
@@ -108,37 +123,40 @@
                 <li class="block-item" onclick="toggleBlock(this)">
                     <div class="block-header"><span class="text-bold cute-font">【角色互動體驗】</span><span class="text-desc">捕獲胡迪與巴斯 ▾</span></div>
                     <div class="block-body">
-                        ⏰ 下午 <b>15:00 左右</b>開始，會有 2 個玩具朋友隨機出現。<br>
-                        🎵 當 1 樓大廳響起音樂，代表有人出來見面囉！排隊 15 分鐘內就能拍到。角色有胡迪、翠絲、巴斯、牧羊女等。<br>
-                        🌙 晚上 20:00-20:30 大廳有互動；20:30-21:00 在 2 樓遊樂屋也會有驚喜！
+                        ⏰ <b>見面時間：</b>下午 15:00 左右隨機出現。<br>
+                        🎵 <b>小訣竅：</b>大廳音樂響起即代表角色現身，排隊約 15 分鐘即可合照。<br>
+                        🌙 <b>加開場：</b>20:00 大廳「哈嘍小夥伴」；20:30 在 2 樓遊樂屋。
                     </div>
                 </li>
                 <li class="block-item" onclick="toggleBlock(this)">
-                    <div class="block-header"><span class="text-bold cute-font">【巴斯光年喚醒】</span><span class="text-desc">巴斯光年打給你 ▾</span></div>
-                    <div class="block-body">前晚用房間電話預約叫醒服務，隔天巴斯光年會打電話叫你起床！第一通沒接到沒關係，還會有第二通。</div>
+                    <div class="block-header"><span class="text-bold cute-font">【巴斯光年喚醒】</span><span class="text-desc">專屬起床電話 ▾</span></div>
+                    <div class="block-body">
+                        📞 <b>預約方式：</b>前晚透過房間電話聯絡櫃檯。<br>
+                        🚀 <b>服務內容：</b>隔天巴斯光年會親自打電話叫你起床！若沒接到還會打第二通。
+                    </div>
                 </li>
                 <li class="block-item" onclick="toggleBlock(this)">
                     <div class="block-header"><span class="text-bold cute-font">【飯店禮品】</span><span class="text-desc">這些通通可以帶回家 ▾</span></div>
                     <div class="block-body">
-                        🛍️ <b>備品：</b>藍色購物袋、筆、便利貼、行李吊牌、貼紙包。<br>
-                        💳 <b>房卡：</b>共有 4 款，可以跟店員說想要哪個角色。<br>
-                        🚿 <b>洗漱：</b>Logo 拖鞋（2大1小）、牙刷組、三眼怪浴巾。<br>
-                        ⚠️ 娃娃和馬克杯不能帶走！
+                        🛍️ <b>專屬備品：</b>購物袋、筆、便利貼、行李吊牌、貼紙包。<br>
+                        💳 <b>房卡：</b>共有 4 款，辦理入住時可詢問心儀款式。<br>
+                        🚿 <b>盥洗：</b>Logo 拖鞋（大&小）、三眼怪浴巾、牙刷組。<br>
+                        ⚠️ <b>注意：</b>房間內娃娃與馬克杯不可帶走。
                     </div>
                 </li>
                 <li class="block-item" onclick="toggleBlock(this)">
                     <div class="block-header"><span class="text-bold cute-font">【飯店小巧思】</span><span class="text-desc">隱藏細節攻略 ▾</span></div>
                     <div class="block-body">
-                        🚀 三眼怪電梯報樓層、大廳盯著你看的巴斯畫、花園大型巴斯&三眼怪火箭、夜光星空天花板。<br>
-                        🧸 飯店草莓熊商店可以買到限定款玩偶。
+                        🚀 <b>細節驚喜：</b>三眼怪電梯報號、夜光星空天花板、盯著你看的巴斯畫、戶外巨型巴斯 & 三眼怪火箭。<br>
+                        🧸 <b>草莓熊商店：</b>可購得飯店限定限量玩偶。
                     </div>
                 </li>
                 <li class="block-item" onclick="toggleBlock(this)">
-                    <div class="block-header"><span class="text-bold cute-font">【早餐的選擇】</span><span class="text-desc">最聰明的用餐時間 ▾</span></div>
+                    <div class="block-header"><span class="text-bold cute-font">【早餐的選擇】</span><span class="text-desc">兼顧早享與美食 ▾</span></div>
                     <div class="block-body">
-                        ⏰ 06:30-11:00。為了不浪費提早入園權限：<br>
-                        🍴 <b>方案A：</b>06:20吃，06:50吃完衝園區。<br>
-                        🏰 <b>方案B(推)：</b>先利用早享玩完，10:00回飯店慢慢吃，11:00前拿完餐即可。
+                        ⏰ <b>用餐時間：</b>06:30 - 11:00。<br>
+                        方案 A：06:20 吃完直接衝早享入園。<br>
+                        方案 B (推)：利用早享先玩，10:00 回飯店慢慢吃，11:00 前收餐。
                     </div>
                 </li>
             </ul>
@@ -149,20 +167,30 @@
                 <li class="block-item" onclick="toggleBlock(this)">
                     <div class="block-header"><span class="text-bold cute-font">【免費提早入園】</span><span class="text-desc">早享 1 小時實戰攻略 ▾</span></div>
                     <div class="block-body">
-                        🎫 入住送提早 1 小時入園卡。我的行程：<br>
-                        06:30 早餐 → 06:55 叫<b>滴滴</b>（近又便宜，避開接駁車人潮） → 07:07 抵達 → 07:30 正式入園。<br><br>
-                        🏎️ <b>秘訣：</b>排「熱力追蹤」一般隊伍，可以看到更多場景和劇情，之後再用快通玩第二次！
+                        🎫 <b>早享卡：</b>入住即贈，可從「迪士尼小鎮」通道入園。<br>
+                        ⏰ <b>最佳行程：</b><br>
+                        • 06:30 早餐 → 06:55 叫<b>滴滴</b>（快速又便宜，避開接駁車人潮） → 07:07 抵達 → 07:30 正式入園。<br><br>
+                        🏎️ <b>熱力追蹤攻略：</b><br>
+                        建議排「一般隊伍」，才能完整看到電影場景與劇情細節。
                     </div>
                 </li>
                 <li class="block-item" onclick="toggleBlock(this)">
                     <div class="block-header"><span class="text-bold cute-font">【半日早享卡】</span><span class="text-desc">15:00 入園優勢 ▾</span></div>
-                    <div class="block-body">15:00 就能入園，剛好可以熟悉接駁車上下車地點。這半天可以先看花車遊行和煙火卡位，把隔天時間留給設施。</div>
+                    <div class="block-body">
+                        辦理入住後櫃檯購買，下午 15:00 即可入園。<br>
+                        ✨ 先看遊行、熟悉動線與接駁位置，將隔天寶貴的早享時間留給熱門設施。
+                    </div>
                 </li>
                 <li class="block-item" onclick="toggleBlock(this)">
-                    <div class="block-header"><span class="text-bold cute-font">【免費接駁車】</span><span class="text-desc">班次與人潮指南 ▾</span></div>
+                    <div class="block-header"><span class="text-bold cute-font">【免費接駁車】</span><span class="text-desc">班次與搭乘建議 ▾</span></div>
                     <div class="block-body">
-                        🚌 07:00-23:00。10 分鐘一班，5 分鐘到園區。<br>
-                        💡 除了第一班車人很多，後續班次都很舒服。
+                        🚌 <b>接駁車資訊：</b><br>
+                        • <b>營運時間：</b>07:00 - 23:00。<br>
+                        • <b>班次頻率：</b>約 <b>10 分鐘</b>就有一班車，非常密集！<br>
+                        • <b>搭乘時長：</b>坐車到園區大約只需 <b>5 分鐘</b>。<br><br>
+                        💡 <b>搭乘小撇步：</b><br>
+                        除了早上的「第一班車」人潮眾多外，後續班次搭起來都非常舒適。<br><br>
+                        🚗 <b>自駕：</b>飯店附停車場，開車前來也非常方便。
                     </div>
                 </li>
             </ul>
