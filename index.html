@@ -198,83 +198,39 @@
         </div>
     </div>
   <div class="footer">
-.luxo-divider {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 10px;
-    margin-bottom: 18px;
-    height: 90px;
-}
 
-.luxo-lamp {
-    position: relative;
-    width: 70px;
-    height: 80px;
-    animation: lamp-hop 2.2s ease-in-out infinite;
-    transform-origin: bottom center;
-}
+      <div style="text-align:center; margin-bottom:18px;">
+  <svg width="140" height="90" viewBox="0 0 140 90" xmlns="http://www.w3.org/2000/svg">
+    <g>
+      <animateTransform
+        attributeName="transform"
+        type="translate"
+        values="0 0; 0 -10; 0 0; 0 -6; 0 0"
+        dur="1.8s"
+        repeatCount="indefinite"/>
+      
+      <ellipse cx="38" cy="78" rx="18" ry="6" fill="#666"/>
+      <line x1="38" y1="72" x2="50" y2="52" stroke="#666" stroke-width="4" stroke-linecap="round"/>
+      <line x1="50" y1="52" x2="36" y2="34" stroke="#666" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="38" cy="72" r="4" fill="#888"/>
+      <circle cx="50" cy="52" r="4" fill="#888"/>
+      <circle cx="36" cy="34" r="4" fill="#888"/>
+      <ellipse cx="26" cy="22" rx="16" ry="11" fill="#fff8dc" stroke="#555" stroke-width="3" transform="rotate(-25 26 22)"/>
+      <circle cx="22" cy="22" r="4" fill="#ffd54f"/>
+    </g>
 
-.luxo-head {
-    position: absolute;
-    top: 2px;
-    left: 8px;
-    width: 30px;
-    height: 22px;
-    background: #fff8dc;
-    border: 3px solid #555;
-    border-radius: 50%;
-    transform: rotate(-25deg);
-}
-
-.luxo-arm-top,
-.luxo-arm-bottom {
-    position: absolute;
-    background: #666;
-    height: 4px;
-}
-
-.luxo-arm-top {
-    width: 24px;
-    top: 28px;
-    left: 24px;
-    transform: rotate(35deg);
-}
-
-.luxo-arm-bottom {
-    width: 24px;
-    top: 46px;
-    left: 20px;
-    transform: rotate(-35deg);
-}
-
-.luxo-base {
-    position: absolute;
-    bottom: 0;
-    left: 8px;
-    width: 38px;
-    height: 10px;
-    background: #666;
-}
-
-.luxo-ball {
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background: white;
-    border: 4px solid #ddd;
-    animation: ball-bounce 2.2s ease-in-out infinite;
-}
-
-@keyframes lamp-hop {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-}
-
-@keyframes ball-bounce {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(5px); }
-}
+    <g>
+      <animateTransform
+        attributeName="transform"
+        type="translate"
+        values="0 0; 0 4; 0 0; 0 2; 0 0"
+        dur="1.8s"
+        repeatCount="indefinite"/>
+      <circle cx="95" cy="70" r="16" fill="#fff" stroke="#ddd" stroke-width="4"/>
+      <circle cx="95" cy="70" r="8" fill="none" stroke="#e5e5e5" stroke-width="3"/>
+    </g>
+  </svg>
+</div>
     <div style="display:flex; flex-direction:column; gap:12px; align-items:center;">
 
         <a href="https://www.klook.com/zh-TW/coupons/?code=SKYNIKO"
