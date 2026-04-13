@@ -198,11 +198,83 @@
         </div>
     </div>
   <div class="footer">
-<div style="text-align:center; margin-bottom:16px; font-size:28px; line-height:1;">
-    <span style="display:inline-block; transform: rotate(-20deg);">💡</span>
-    <span style="margin:0 8px;">── ✨ ──</span>
-    <span>⚪</span>
-</div>
+.luxo-divider {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+    margin-bottom: 18px;
+    height: 90px;
+}
+
+.luxo-lamp {
+    position: relative;
+    width: 70px;
+    height: 80px;
+    animation: lamp-hop 2.2s ease-in-out infinite;
+    transform-origin: bottom center;
+}
+
+.luxo-head {
+    position: absolute;
+    top: 2px;
+    left: 8px;
+    width: 30px;
+    height: 22px;
+    background: #fff8dc;
+    border: 3px solid #555;
+    border-radius: 50%;
+    transform: rotate(-25deg);
+}
+
+.luxo-arm-top,
+.luxo-arm-bottom {
+    position: absolute;
+    background: #666;
+    height: 4px;
+}
+
+.luxo-arm-top {
+    width: 24px;
+    top: 28px;
+    left: 24px;
+    transform: rotate(35deg);
+}
+
+.luxo-arm-bottom {
+    width: 24px;
+    top: 46px;
+    left: 20px;
+    transform: rotate(-35deg);
+}
+
+.luxo-base {
+    position: absolute;
+    bottom: 0;
+    left: 8px;
+    width: 38px;
+    height: 10px;
+    background: #666;
+}
+
+.luxo-ball {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: white;
+    border: 4px solid #ddd;
+    animation: ball-bounce 2.2s ease-in-out infinite;
+}
+
+@keyframes lamp-hop {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+@keyframes ball-bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(5px); }
+}
     <div style="display:flex; flex-direction:column; gap:12px; align-items:center;">
 
         <a href="https://www.klook.com/zh-TW/coupons/?code=SKYNIKO"
